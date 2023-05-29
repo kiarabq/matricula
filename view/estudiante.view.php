@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Matricula</title>
+    <title>Sistema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/sistema.css">
 
@@ -15,39 +15,31 @@
     <div class="container-fluid">
         <div class="row justify-content-center align-content-center">
             <div class="col-8 barra">
-                <h4 class="text-light">Logo</h4>
+                <h4 class="text-light">Sistema Matrículas</h4>
             </div>
             <div class="col-4 text-right barra">
                 <ul class="navbar-nav mr-auto">
-                    <li>
-                        <a href="#" class="px-3 text-light perfil dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user"></i></a>
-
-                        <div class="dropdown-menu" aria-labelledby="navbar-dropdown">
-                            <a class="dropdown-item menuperfil cerrar" href="../index.php"><i class="fas fa-sign-out-alt m-1"></i>Cerrar sesión
-                            </a>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="container mt-4">
-        <h4>Gestión de Estudiantes</h4>
+        <h4>Lista de Estudiantes</h4>
         <hr>
 
         <div class="mb-3">
-            <button type="button" class="btn btn-primary btn-sm" id="abrir-modal-registro" data-bs-toggle="modal" data-bs-target="#modal-registro-estudiante">
+            <button type="button" class="btn btn-dark btn-sm" id="abrir-modal-registro" data-bs-toggle="modal" data-bs-target="#modal-registro-estudiante">
                 <i class="fa-sharp fa-solid fa-file"></i> Registrar Estudiante
             </button>
     
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-buscador">
+            <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#modal-buscador">
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i> Buscar Estudiante
             </button>
 
         </div>
 
-        <table class="table table-striped mt-4" id="tabla-empleados" width="100%">
+        <table class="table table-striped mt-4" id="tabla-estudiantes" width="100%">
             <colgroup>
                 <col width="5%">    <!-- ID -->
                 <col width="15%">   <!-- Apellidos -->
@@ -109,6 +101,8 @@
                             <label for="genero" class="form-label bold">Género:</label>
                             <select name="genero" id="genero" class="form-select">
                                 <option value="">Seleccione</option>
+                                <option value="">M</option>
+                                <option value="">F</option>
                             </select>
                         </div>
                             <div class="col-md-6 mt-3">
@@ -219,9 +213,7 @@
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
 
     <script>
-        $(document).ready(function ()){
-
-            //Global
+        $(document).ready(function (){
             let datosNuevos = true;
             let idestudiante = 0; //Actualizar - Eliminar
 
@@ -231,20 +223,21 @@
                     type: 'GET',
                     data: {'operacion': 'listarEstudiantes'},
                     success: function (result){
-
                         var tabla = $("#tabla-estudiantes").DataTable();
+                        //Destruirlo
                         tabla.destroy();
-
                         //Poblar el cuerpo de la tabla
                         $("#tabla-estudiantes tbody").html(result);
 
-                        //Reconstruimos la tabla
-                        $("#tabla-estudiantes").DataTable({
-                        })
                     }
-                })
+                });
             }
-        }
+            //Se ejecutan cuando la vista es mostrada
+            mostrarEstudiantes();
+        });
     </script>
 
 
+</body>
+
+</html>

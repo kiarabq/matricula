@@ -13,7 +13,7 @@ BEGIN
 	WHERE nombreusuario = _nombreusuario AND estado = '1';
 END $$
 
-CALL spu_usuarios_login('kiara');
+CALL spu_usuarios_login('Kiara');
 
 
 DELIMITER $$

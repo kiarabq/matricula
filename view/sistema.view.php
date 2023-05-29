@@ -1,10 +1,21 @@
+<?php
+session_start();
+
+//Buscamos la consición en donde el usuario NO DEBE INGRESAR A ESA VISTA
+//Comprobamos si el usuario realmente inició sesión...
+if(!isset($_SESSION['seguridad']) || $_SESSION['seguridad']['login'] == false){
+        //Cambiar a otra URL
+        header('Location: ../index.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Matricula</title>
+    <title>Sistema</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/sistema.css">
 
@@ -15,7 +26,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center align-content-center">
             <div class="col-8 barra">
-                <h4 class="text-light">Logo</h4>
+                <h4 class="text-light">Sistema Matrículas</h4>
             </div>
             <div class="col-4 text-right barra">
                 <ul class="navbar-nav mr-auto">
@@ -38,8 +49,8 @@
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
                     <a href="#"><i class="fas fa-home"></i><span>Inicio</span></a>
                     <a href="./estudiante.view.php"><i class=" "></i><span>Estudiantes</span></a>
-                    <a href="#"><i class=" "></i><span>Matrícula</span></a>
-                    <a href="#"><i class=" "></i><span>Carreras</span></a>
+                    <a href="./matricula.view.php"><i class=" "></i><span>Matrícula</span></a>
+                    <a href="./carrera.view.php"><i class=" "></i><span>Carreras</span></a>
                     <a href="#"><i class=" "></i><span>Profesores</span></a>
                     <a href="#"><i class=" "></i><span>Pagos</span></a>
 
@@ -60,6 +71,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/646c794df3.js"></script>
+
+    
 </body>
 
 </html>

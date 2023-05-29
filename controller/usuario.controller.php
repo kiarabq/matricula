@@ -1,4 +1,5 @@
 <?php
+session_start();  //Apertura-hereda el manejo de variables de sesión
 //Invocando modelo
 require_once '../model/usuario.php';
 

@@ -42,14 +42,25 @@
         <table class="table table-striped mt-4" id="tabla-empleados" width="100%">
             <colgroup>
                 <col width="5%">    <!-- ID -->
+                <col width="15%">   <!--  -->
+                <col width="15%">   <!--  -->
+                <col width="15%">   <!--  -->
+                <col width="15%">   <!--  -->
+                <col width="15%">   <!--  -->
                 <col width="15%">   <!-- Ciclo -->
                 <col width="15%">   <!-- Precio-->
             </colgroup>
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Ciclo</th>
-                    <th>Precio</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
 
                 </tr>
             </thead>

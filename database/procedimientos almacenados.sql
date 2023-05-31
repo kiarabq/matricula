@@ -39,8 +39,29 @@ BEGIN
 	INSERT INTO estudiantes (idestudiante, apellidos, nombres, dni, genero, celular, especialidad) VALUES
 	(_idestudiante, _apellidos, _nombres, _dni, _genero, _celular, _especialidad);
 END $$
+CALL spu_estudiantes_registrar(6, 'Muñoz', 'Omar', '75837291', 'M', '', 'Contabilidad');
+
+CALL spu_estudiantes_listar();
 
 SELECT * FROM estudiantes
+
+-- Buscador de estudiantes
+DELIMITER $$
+CREATE PROCEDURE spu_estudiantes_buscar_dni(IN _dni CHAR(8))
+BEGIN
+	SELECT	estudiantes.idestudiante,
+				estudiantes.apellidos,
+				estudiantes.nombres,
+				estudiantes.dni,
+				estudiantes.genero,
+				estudiantes.celular,
+				estudiantes.especialidad
+		FROM estudiantes
+		WHERE estudiantes.dni=_dni;
+		
+END $$
+
+CALL spu_estudiantes_buscar_dni(73589765);
 
 
 DELIMITER $$
@@ -88,7 +109,15 @@ END $$
 DELIMITER $$
 CREATE PROCEDURE spu_matriculas_listar()
 BEGIN
-	SELECT * FROM matriculas ORDER BY idmatricula DESC;
+	SELECT	matriculas.idmatricula,
+				estudiantes.apellidos,
+				estudiantes.nombres,
+				carreras.nombrecarrera, 
+				docentes.apellidos, docentes.nombres,
+				tipopago.mediopago,
+				matriculas.ciclo, matriculas.precio
+		FROM matriculas
+		ORDER BY matriculas.idmatricula DESC;
 END $$
 
 CALL spu_matriculas_listar();

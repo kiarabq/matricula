@@ -9,8 +9,17 @@ if (isset($_GET['operacion'])){
 
   if($_GET['operacion'] == 'listarCarreras'){
     $data = $carrera->listarCarreras();
+    if ($data){
+      echo "<option value='' selected>Seleccione</option>";
+      foreach($data as $registro){
+        echo "<option value='{$registro['idcarrera']}'>{$registro['nombrecarrera']}</option>";
+      }
+    }
+  
+  }
 
-    if($data){
+   if($_GET['operacion'] == 'listarCarrera'){
+    $data = $carrera-> listarCarreras();
       //Enviamos datos para que la vista RENDERICE
       foreach($data as $registro){
         echo "
@@ -28,6 +37,5 @@ if (isset($_GET['operacion'])){
       
     }
   }
-}
 
 ?>

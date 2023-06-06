@@ -2,7 +2,7 @@
 
 require_once 'conexion.php';
 
-class Carrera extends Conexion{
+class Tipopago extends Conexion{
 
   private $acceso;
 
@@ -10,9 +10,9 @@ class Carrera extends Conexion{
     $this->acceso = parent::getConexion();
   }
 
-  public function listarCarreras(){
+  public function listarTipopago(){
     try{
-      $consulta = $this->acceso->prepare("CALL spu_carreras_listar()");
+      $consulta = $this->acceso->prepare("CALL spu_tipopago_listar()");
       $consulta->execute();
 
       return $consulta->fetchAll(PDO::FETCH_ASSOC);

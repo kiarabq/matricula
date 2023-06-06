@@ -22,7 +22,6 @@ if (isset($_GET['operacion'])){
                         <td>{$registro['dni']}</td>
                         <td>{$registro['genero']}</td>
                         <td>{$registro['celular']}</td>
-                        <td>{$registro['especialidad']}</td>
                         <td>
                             <a href='#' data-ideliminar='{$registro['idestudiante']}' class='btn btn-sm btn-danger eliminar'><i class='fa-solid fa-trash'></i></a>
                             <a href='#' data-ideditar='{$registro['idestudiante']}' class='btn btn-sm btn-info editar'><i class='fa-solid fa-pencil'></i></a>

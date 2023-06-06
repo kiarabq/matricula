@@ -8,7 +8,6 @@ if(!isset($_SESSION['seguridad']) || $_SESSION['seguridad']['login'] == false){
         header('Location: ../index.php');
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -47,20 +46,46 @@ if(!isset($_SESSION['seguridad']) || $_SESSION['seguridad']['login'] == false){
         <div class="row">
             <div class="barra-lateral col-12 col-sm-auto">
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
-                    <a href="#"><i class="fas fa-home"></i><span>Inicio</span></a>
-                    <a href="./estudiante.view.php"><i class=" "></i><span>Estudiantes</span></a>
-                    <a href="./matricula.view.php"><i class=" "></i><span>Matrícula</span></a>
-                    <a href="./carrera.view.php"><i class=" "></i><span>Carreras</span></a>
-                    <a href="#"><i class=" "></i><span>Profesores</span></a>
-                    <a href="#"><i class=" "></i><span>Pagos</span></a>
-
+                    <a href=""><i class="fas fa-home"></i><span>Inicio</span></a>
+                    <a href="./matricula.view.php"><i class=""></i><span>Matriculas</span></a>
+                    <a href="./estudiante.view.php"><i class=""></i><span>Estudiantes</span></a>
+                    <a href="./carrera.view.php"><i class=""></i><span>Carreras</span></a>
                 </nav>
             </div>
             <main class="main col">
-                <div class="row justify-content-center align-content-center text-center">
                     <div class="columna col-lg-6">
-                        
+                    <!--grafico -->
+                    <h4>Gráfico</h4>
+                    <div class="col-md-12">
+                        <canvas id="grafico"></canvas>          
                     </div>
+                    <div class="col-md-6">
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", ()=>{
+                        const  lienzo = document.getElementById("grafico");
+
+                        const graficoBarras = new Chart(lienzo, {
+                            type: 'bar',
+                            data:{
+                            labels: ['Arquitectura','Administración','Contabilidad','Psicología'],
+                            datasets: [
+                                {
+                                borderColor: '#E74C3C',
+                                backgroundColor: ['#2E86C1','#1D8348','#909497','#F1C40F'],
+                                label: 'Carreras Matriculadas',
+                                data: [5,10,15,20,25],
+                                borderWidth: 1
+                                }          
+                            ]
+                            }
+                        })
+                        });                    
+
+                    </script>
+
                 </div>
             </main>
         </div>

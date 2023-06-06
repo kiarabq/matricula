@@ -9,18 +9,17 @@ CREATE TABLE estudiantes
 	dni			CHAR(8)		NOT NULL,
 	genero			CHAR(1)		NOT NULL,
 	celular			CHAR(9) 	NULL,
-	especialidad		VARCHAR(70)	NOT NULL,
 	fechaingreso		DATETIME NOT NULL DEFAULT NOW(),
 	CONSTRAINT uk_dni_estudiantes UNIQUE (dni),
 	CONSTRAINT ck_genero_estudiantes CHECK(genero IN ('M','F'))
 )ENGINE = INNODB;
 
-INSERT INTO estudiantes (apellidos, nombres, dni, genero, celular, especialidad) VALUES
-('Martinez Prado', 'Mariano', '73589765', 'M', '956389251','Administración'),
-('Mendoza Torres', 'Carla', '74502560', 'F',  '947382015', 'Arquitectura'),
-('Palacios Guerra', 'Freddy', '75589463', 'M', '948240100', 'Contabilidad'),
-('García Tasayco', 'Valeria', '73682071', 'F', '956723971', 'Medicina'),
-('Gomez Salas', 'Pedro' ,'72895710', 'M', '967298156', 'Psicología');
+INSERT INTO estudiantes (apellidos, nombres, dni, genero, celular) VALUES
+('Martinez Prado', 'Mariano', '73589765', 'M', '956389251'),
+('Mendoza Torres', 'Carla', '74502560', 'F',  '947382015'),
+('Palacios Guerra', 'Freddy', '75589463', 'M', '948240100'),
+('García Tasayco', 'Valeria', '73682071', 'F', '956723971'),
+('Gomez Salas', 'Pedro' ,'72895710', 'M', '967298156');
 
 
 CREATE TABLE carreras
@@ -85,6 +84,20 @@ INSERT INTO docentes (apellidos, nombres, dni, especialidad, direccion) VALUES
 ('Cruz Ruíz', 'Tomás', '42928491', 'Psicológia', 'Sunampe'),
 ('Salazar Rivera', 'Verónica', '49287183', 'Medicina', 'Pueblo Nuevo');
 
+CREATE TABLE ciclo
+(
+	idciclo			INT AUTO_INCREMENT PRIMARY KEY,
+	ciclo			VARCHAR(3)	NOT NULL
+)ENGINE = INNODB;
+
+INSERT INTO ciclo (ciclo) VALUES
+('I'),
+('II'),
+('III'),
+('IV'),
+('V'),
+('VI');
+
 
 
 CREATE TABLE matriculas
@@ -95,20 +108,23 @@ CREATE TABLE matriculas
 	idcarrera		INT NOT NULL,
 	iddocente		INT NOT NULL,
 	idtipopago		INT NOT NULL,
-	ciclo			VARCHAR(10)	NOT NULL,
+	idciclo			INT NOT NULL,
 	precio			DECIMAL(7,2),
 	fecharegistro		DATETIME NOT NULL DEFAULT NOW(),
 	CONSTRAINT fk_idestudiante_matricula FOREIGN KEY (idestudiante) REFERENCES estudiantes (idestudiante),
 	CONSTRAINT fk_idusuario_matricula FOREIGN KEY (idusuario) REFERENCES usuarios (idusuario),
 	CONSTRAINT fk_idcarrera_matricula FOREIGN KEY (idcarrera) REFERENCES carreras(idcarrera),
 	CONSTRAINT fk_iddocente_matricula FOREIGN KEY (iddocente) REFERENCES docentes (iddocente),
-	CONSTRAINT fk_idtipopago_matricula FOREIGN KEY (idtipopago) REFERENCES tipopago (idtipopago)
+	CONSTRAINT fk_idtipopago_matricula FOREIGN KEY (idtipopago) REFERENCES tipopago (idtipopago),
+	CONSTRAINT fk_idciclo_matricula FOREIGN KEY (idciclo) REFERENCES ciclo (idciclo)
 )ENGINE = INNODB;
 
-INSERT INTO matriculas (idestudiante, idusuario, idcarrera, iddocente, idtipopago, ciclo, precio) VALUES
-(1, 1, 1, 1, 1, 'I', '300'),
-(2, 1, 2, 2, 2, 'II', '300'),
-(3, 1, 3, 3, 3, 'III', '300');
+INSERT INTO matriculas (idestudiante, idusuario, idcarrera, iddocente, idtipopago, idciclo, precio) VALUES
+(1, 1, 1, 1, 1, 1, '300'),
+(2, 1, 2, 2, 2, 2, '300'),
+(3, 1, 3, 3, 3, 3, '300'),
+(4, 1, 4, 4, 1, 4, '300'),
+(5, 1, 5, 5, 3, 5, '300');
 
 
 
